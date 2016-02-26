@@ -2,10 +2,13 @@ from fractions import gcd
 
 triples = []
 dimens = []
+
+m = 100
+
 def ptriple_tree(a,b,c):
     k=1
-    if a < 101 and b < 101 and c < 101:
-        while k*a < 101 and k*b < 101 and k*c < 101:
+    if a <= m and b <= m and c <= m:
+        while k*a <= m and k*b <= m and k*c <= m:
             triples.append((k*a,k*b,k*c))
             k+=1
         #recursively calls ptriple_tree on each of the
@@ -24,3 +27,13 @@ c = 5
 
 ptriple_tree(a,b,c)
 
+print triples
+
+ways = 0
+for triple in triples:
+    m = max(triple)
+    for leg in triple:
+        if leg != m:
+            ways += leg//2
+
+print ways
